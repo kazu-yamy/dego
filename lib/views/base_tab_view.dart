@@ -30,6 +30,7 @@ class BaseTabView extends ConsumerWidget {
         onTap: (int index) => ref.read(baseTabViewProvider.notifier).state =
             ViewType.values[index],
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.amberAccent,
       ),
     );
   }
