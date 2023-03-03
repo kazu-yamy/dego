@@ -1,8 +1,9 @@
+import 'package:dego/views/base_tab_view.dart';
 import 'package:flutter/material.dart';
-import 'package:dego/views/login.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Login Demo',
-      home: LoginPage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Dego',
+      home: BaseTabView(),
     );
   }
 }
