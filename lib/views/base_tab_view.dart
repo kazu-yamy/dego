@@ -11,7 +11,7 @@ class BaseTabView extends ConsumerWidget {
 
   final widgets = [
     const IpAddressPage(),
-    const AppPage(),
+    AppPage(),
   ];
 
   @override
