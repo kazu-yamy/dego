@@ -11,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeMode mode = ThemeMode.system;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Dego',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: mode,
       home: BaseTabView(),
     );
   }

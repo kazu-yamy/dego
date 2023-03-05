@@ -11,7 +11,7 @@ class BaseTabView extends ConsumerWidget {
 
   final widgets = [
     const IpAddressPage(),
-    const AppPage(),
+    AppPage(),
   ];
 
   @override
@@ -22,15 +22,27 @@ class BaseTabView extends ConsumerWidget {
       appBar: AppBar(title: const Text("Dego")),
       body: widgets[view.index],
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Text("IP"), label: 'ipAddress'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home')
-        ],
-        currentIndex: view.index,
-        onTap: (int index) => ref.read(baseTabViewProvider.notifier).state =
-            ViewType.values[index],
-        type: BottomNavigationBarType.fixed,
-      ),
+          items: [
+            BottomNavigationBarItem(
+                icon: const Text("IP"),
+                label: 'ipAddress',
+                backgroundColor:
+                    Colors.deepPurpleAccent.computeLuminance() > 0.5
+                        ? Colors.black
+                        : Colors.white),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                label: 'home',
+                backgroundColor:
+                    Colors.deepPurpleAccent.computeLuminance() > 0.5
+                        ? Colors.black
+                        : Colors.white),
+          ],
+          currentIndex: view.index,
+          onTap: (int index) => ref.read(baseTabViewProvider.notifier).state =
+              ViewType.values[index],
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.deepPurpleAccent),
     );
   }
 }

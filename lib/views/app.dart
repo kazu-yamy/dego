@@ -21,11 +21,27 @@ final tempProvider = StateProvider((ref) {
 });
 
 final imageProvider = StateProvider((ref) {
-  return 'path';
+  return '';
+});
+
+final dioProvider = StateProvider<Dio>((ref) {
+  return Dio();
 });
 
 class AppPage extends ConsumerWidget {
-  const AppPage({super.key});
+  AppPage({super.key});
+
+  final dataProvider = StreamProvider((ref) async* {
+    Dio dio = ref.watch(dioProvider);
+    Response<dynamic> sensorRes = await dio.get("/data/item/get");
+    final data = await sensorRes.data[1]["item"];
+    ref.read(dateProvider.notifier).state = data["date"];
+    ref.read(timeProvider.notifier).state = data["time"];
+    ref.read(tempProvider.notifier).state = data["temp"];
+    ref.read(imageProvider.notifier).state =
+        "http://${ref.read(ipAddressProvider)}/files/${data['image_path']}.jpg";
+    await Future.delayed(const Duration(minutes: 10));
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
